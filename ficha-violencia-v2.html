@@ -1,0 +1,986 @@
+<div style="text-align: center; margin-bottom: 20px;">
+  <p><strong>República Federativa do Brasil</strong><br>
+  <strong>Ministério da Saúde</strong></p>
+  <p><strong>SINAN</strong><br>
+  <strong>SISTEMA DE INFORMAÇÃO DE AGRAVOS DE NOTIFICAÇÃO</strong><br>
+  <strong>FICHA DE NOTIFICAÇÃO INDIVIDUAL</strong></p>
+  <p><em>Caso suspeito ou confirmado de violência doméstica/intrafamiliar (física, psicológica/moral, financeira/econômica, negligência/abandono), sexual, autoprovocada, tráfico de pessoas, trabalho escravo, trabalho infantil, tortura, intervenção legal contra mulheres e homens em todas as idades. No caso de violência extrafamiliar/comunitária, somente serão objetos de notificação as violências contra crianças, adolescentes, mulheres, pessoas idosas, pessoa com deficiência, pessoa com transtorno, indígenas e população LGBT.</em></p>
+  
+</div>
+  <div style="text-align: right;">
+    <label for="numero_ficha"><strong>Nº</strong></label><br>
+    <input type="text" id="numero_ficha" name="numero_ficha" style="width: 100px;">
+  </div>
+</div>
+<hr>
+<style>
+  .form-group input[type="text"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    font-size: 13px;
+    margin: 20px;
+    color: #000;
+  }
+  h2 {
+    margin-top: 40px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+  font-size: 15px;
+  
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+  
+  width: auto; min-width: 250px;
+    padding: 6px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-group input[type="checkbox"],
+   {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+  .form-group div label {
+    font-weight: normal;
+    display: block;
+    margin-left: 4px;
+  }
+
+@media print {
+  body {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+  }
+  .form-group {
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+  }
+  input, select, textarea {
+    border: 1px solid #000;
+    padding: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  button {
+    display: none;
+  }
+  h2 {
+    page-break-before: always;
+    margin-top: 30px;
+  }
+}
+  input[type=date] {
+    font-size: 15px;
+    padding: 6px;
+    height: auto;
+  }
+  input[type=time] {
+    font-size: 15px;
+    padding: 6px;
+    height: auto;
+  }
+</style>
+<h2>Dados Gerais</h2>
+<div class="form-group">
+  <label for="tipo_notificacao">1. Tipo de Notificação</label>
+  <input type="text" id="tipo_notificacao" name="tipo_notificacao" value="2 - Individual">
+</div>
+<div class="form-group">
+  <label>2. Agravo/doença</label>
+  <input type="text" value="VIOLÊNCIA INTERPESSOAL/AUTOPROVOCADA" readonly>
+  <label>Código (CID10):</label>
+  <input type="text" value="Y09" readonly>
+</div>
+<div class="form-group">
+  <label for="data_notificacao">3. Data da notificação</label>
+  <input type="date" id="data_notificacao" name="data_notificacao">
+</div>
+<div class="form-group">
+  <label for="uf">4. UF</label>
+  <select id="uf" name="uf" onchange="preencherCodigoIBGE(this.value)">
+    <option value="">Selecione</option>
+    <option value="AC">AC - Acre</option>
+    <option value="AL">AL - Alagoas</option>
+    <option value="AP">AP - Amapá</option>
+    <option value="AM">AM - Amazonas</option>
+    <option value="BA">BA - Bahia</option>
+    <option value="CE">CE - Ceará</option>
+    <option value="DF">DF - Distrito Federal</option>
+    <option value="ES">ES - Espírito Santo</option>
+    <option value="GO">GO - Goiás</option>
+    <option value="MA">MA - Maranhão</option>
+    <option value="MT">MT - Mato Grosso</option>
+    <option value="MS">MS - Mato Grosso do Sul</option>
+    <option value="MG">MG - Minas Gerais</option>
+    <option value="PA">PA - Pará</option>
+    <option value="PB">PB - Paraíba</option>
+    <option value="PR">PR - Paraná</option>
+    <option value="PE">PE - Pernambuco</option>
+    <option value="PI">PI - Piauí</option>
+    <option value="RJ">RJ - Rio de Janeiro</option>
+    <option value="RN">RN - Rio Grande do Norte</option>
+    <option value="RS">RS - Rio Grande do Sul</option>
+    <option value="RO">RO - Rondônia</option>
+    <option value="RR">RR - Roraima</option>
+    <option value="SC">SC - Santa Catarina</option>
+    <option value="SP">SP - São Paulo</option>
+    <option value="SE">SE - Sergipe</option>
+    <option value="TO">TO - Tocantins</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="municipio_notificacao">5. Município de notificação</label>
+<select id="municipio_notificacao" name="municipio_notificacao">
+  <option value="">Selecione a UF primeiro</option>
+</select>
+  <label for="codigo_ibge">Código (IBGE)</label>
+  <input type="text" id="codigo_ibge" name="codigo_ibge">
+</div>
+<div class="form-group">
+  <label for="unidade_notificadora">6. Unidade Notificadora</label>
+  <select id="unidade_notificadora" name="unidade_notificadora">
+    <option value="">Selecione</option>
+    <option value="1">1 - Unidade de Saúde</option>
+    <option value="2">2 - Unidade de Assistência Social</option>
+    <option value="3">3 - Estabelecimento de Ensino</option>
+    <option value="4">4 - Conselho Tutelar</option>
+    <option value="5">5 - Unidade de Saúde Indígena</option>
+    <option value="6">6 - Centro Especializado de Atendimento à Mulher</option>
+    <option value="7">7 - Outros</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="nome_unidade">7. Nome da Unidade Notificadora</label>
+  <input type="text" id="nome_unidade" name="nome_unidade">
+  <label for="cod_unidade">Código Unidade</label>
+  <input type="text" id="cod_unidade" name="cod_unidade">
+</div>
+<div class="form-group">
+  <label for="cnes">8. Unidade de Saúde</label>
+  <label for="cnes">Código (CNES):</label>
+  <input type="text" id="cnes" name="cnes">
+</div>
+<div class="form-group">
+  <label for="data_ocorrencia">9. Data da ocorrência da violência</label>
+  <input type="date" id="data_ocorrencia" name="data_ocorrencia">
+</div>
+
+<h2>Notificação Individual</h2>
+<div class="form-group">
+  <label for="nome_vitima">10. Nome do paciente</label>
+  <input type="text" id="nome_vitima" name="nome_vitima">
+</div>
+<div class="form-group">
+  <label for="data_nascimento">11. Data de nascimento</label>
+  <input type="date" id="data_nascimento" name="data_nascimento">
+</div>
+<div class="form-group">
+  <label for="idade">12. (ou) Idade</label>
+  <input type="number" id="idade" name="idade">
+</div>
+<div class="form-group">
+  <label for="unidade_idade">Unidade de tempo da idade</label>
+  <select id="unidade_idade" name="unidade_idade">
+    <option value="">Selecione</option>
+    <option value="1">1 - Hora</option>
+    <option value="2">2 - Dia</option>
+    <option value="3">3 - Mês</option>
+    <option value="4">4 - Ano</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="sexo_vitima">13. Sexo</label>
+  <select id="sexo_vitima" name="sexo_vitima">
+    <option value="">Selecione</option>
+    <option value="M">M - Masculino</option>
+    <option value="F">F - Feminino</option>
+    <option value="I">I - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="gestante">14. Gestante</label>
+  <select id="gestante" name="gestante">
+    <option value="">Selecione</option>
+    <option value="1">1 - 1º Trimestre</option>
+    <option value="2">2 - 2º Trimestre</option>
+    <option value="3">3 - 3º Trimestre</option>
+    <option value="4">4 - Idade gestacional ignorada</option>
+    <option value="5">5 - Não</option>
+    <option value="6">6 - Não se aplica</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="raca_cor">15. Raça/Cor</label>
+  <select id="raca_cor" name="raca_cor">
+    <option value="">Selecione</option>
+    <option value="1">1 - Branca</option>
+    <option value="2">2 - Preta</option>
+    <option value="3">3 - Amarela</option>
+    <option value="4">4 - Parda</option>
+    <option value="5">5 - Indígena</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="escolaridade">16. Escolaridade</label>
+  <select id="escolaridade" name="escolaridade">
+    <option value="">Selecione</option>
+    <option value="0">0 - Analfabeto</option>
+    <option value="1">1 - 1ª à 4ª série incompleta do EF</option>
+    <option value="2">2 - 4ª série completa do EF</option>
+    <option value="3">3 - 5ª à 8ª série incompleta do EF</option>
+    <option value="4">4 - Ensino fundamental completo</option>
+    <option value="5">5 - Ensino médio incompleto</option>
+    <option value="6">6 - Ensino médio completo</option>
+    <option value="7">7 - Educação superior incompleta</option>
+    <option value="8">8 - Educação superior completa</option>
+    <option value="9">9 - Ignorado</option>
+    <option value="10">10 - Não se aplica</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="cartao_sus">17. Número do Cartão SUS</label>
+  <input type="text" id="cartao_sus" name="cartao_sus">
+</div>
+<div class="form-group">
+  <label for="nome_mae">18. Nome da mãe</label>
+  <input type="text" id="nome_mae" name="nome_mae">
+</div>
+
+<h2>Dados de Residência</h2>
+<div class="form-group">
+  <label for="uf_residencia">19. UF</label>
+  <select id="uf_residencia" name="uf_residencia" onchange="document.getElementById('cod_ibge_residencia').value = codigos[this.value] || ''">
+    <option value="">Selecione</option>
+    <option value="AC">AC - Acre</option>
+    <option value="AL">AL - Alagoas</option>
+    <option value="AP">AP - Amapá</option>
+    <option value="AM">AM - Amazonas</option>
+    <option value="BA">BA - Bahia</option>
+    <option value="CE">CE - Ceará</option>
+    <option value="DF">DF - Distrito Federal</option>
+    <option value="ES">ES - Espírito Santo</option>
+    <option value="GO">GO - Goiás</option>
+    <option value="MA">MA - Maranhão</option>
+    <option value="MT">MT - Mato Grosso</option>
+    <option value="MS">MS - Mato Grosso do Sul</option>
+    <option value="MG">MG - Minas Gerais</option>
+    <option value="PA">PA - Pará</option>
+    <option value="PB">PB - Paraíba</option>
+    <option value="PR">PR - Paraná</option>
+    <option value="PE">PE - Pernambuco</option>
+    <option value="PI">PI - Piauí</option>
+    <option value="RJ">RJ - Rio de Janeiro</option>
+    <option value="RN">RN - Rio Grande do Norte</option>
+    <option value="RS">RS - Rio Grande do Sul</option>
+    <option value="RO">RO - Rondônia</option>
+    <option value="RR">RR - Roraima</option>
+    <option value="SC">SC - Santa Catarina</option>
+    <option value="SP">SP - São Paulo</option>
+    <option value="SE">SE - Sergipe</option>
+    <option value="TO">TO - Tocantins</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="municipio_residencia">20. Município de Residência</label>
+<select id="municipio_residencia" name="municipio_residencia">
+  <option value="">Selecione a UF primeiro</option>
+</select>
+</div>
+<div class="form-group">
+  <label for="cod_ibge_residencia">Código (IBGE)</label>
+  <input type="text" id="cod_ibge_residencia" name="cod_ibge_residencia">
+</div>
+<div class="form-group">
+  <label for="distrito">21. Distrito</label>
+  <input type="text" id="distrito" name="distrito">
+</div>
+<div class="form-group">
+  <label for="bairro">22. Bairro</label>
+  <input type="text" id="bairro" name="bairro">
+</div>
+<div class="form-group">
+  <label for="logradouro">23. Logradouro (rua, avenida...)</label>
+  <input type="text" id="logradouro" name="logradouro">
+</div>
+<div class="form-group">
+  <label for="cod_logradouro">Código</label>
+  <input type="text" id="cod_logradouro" name="cod_logradouro">
+</div>
+<div class="form-group">
+  <label for="numero">24. Número</label>
+  <input type="text" id="numero" name="numero">
+</div>
+<div class="form-group">
+  <label for="complemento">25. Complemento (apto., casa...)</label>
+  <input type="text" id="complemento" name="complemento">
+</div>
+<div class="form-group">
+  <label for="geo1">26. Geo campo 1</label>
+  <input type="text" id="geo1" name="geo1">
+</div>
+<div class="form-group">
+  <label for="geo2">27. Geo campo 2</label>
+  <input type="text" id="geo2" name="geo2">
+</div>
+<div class="form-group">
+  <label for="ponto_referencia">28. Ponto de Referência</label>
+  <input type="text" id="ponto_referencia" name="ponto_referencia">
+</div>
+<div class="form-group">
+  <label for="cep">29. CEP</label>
+  <input type="text" id="cep" name="cep">
+</div>
+<div class="form-group">
+  <label for="telefone">30. (DDD) Telefone</label>
+  <input type="text" id="telefone" name="telefone">
+</div>
+<div class="form-group">
+  <label for="zona_residencia">31. Zona</label>
+  <select id="zona_residencia" name="zona_residencia">
+    <option value="">Selecione</option>
+    <option value="1">1 - Urbana</option>
+    <option value="2">2 - Rural</option>
+    <option value="3">3 - Periurbana</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="pais_estrangeiro">32. País (se residente fora do Brasil)</label>
+<select id="pais_estrangeiro" name="pais_estrangeiro">
+  <option value="">Carregando países...</option>
+</select>
+</div>
+
+<h2>Dados da Pessoa Atendida</h2>
+<div class="form-group">
+  <label for="nome_social">33. Nome Social</label>
+  <input type="text" id="nome_social" name="nome_social">
+</div>
+<div class="form-group">
+  <label for="ocupacao">34. Ocupação</label>
+  <input type="text" id="ocupacao" name="ocupacao">
+</div>
+<div class="form-group">
+  <label for="estado_civil">35. Situação conjugal / Estado civil</label>
+  <select id="estado_civil" name="estado_civil">
+    <option value="">Selecione</option>
+    <option value="1">1 - Solteiro</option>
+    <option value="2">2 - Casado/união consensual</option>
+    <option value="3">3 - Viúvo</option>
+    <option value="4">4 - Separado</option>
+    <option value="8">8 - Não se aplica</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="orientacao_sexual">36. Orientação Sexual</label>
+  <select id="orientacao_sexual" name="orientacao_sexual">
+    <option value="">Selecione</option>
+    <option value="1">1 - Heterossexual</option>
+    <option value="2">2 - Homossexual (gay/lésbica)</option>
+    <option value="3">3 - Bissexual</option>
+    <option value="8">8 - Não se aplica</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="identidade_genero">37. Identidade de gênero</label>
+  <select id="identidade_genero" name="identidade_genero">
+    <option value="">Selecione</option>
+    <option value="1">1 - Travesti</option>
+    <option value="2">2 - Mulher Transexual</option>
+    <option value="3">3 - Homem Transexual</option>
+    <option value="8">8 - Não se aplica</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="possui_deficiencia">38. Possui algum tipo de deficiência/transtorno?</label>
+  <select id="possui_deficiencia" name="possui_deficiencia">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="tipo_deficiencia">39. Se sim, qual tipo de deficiência / transtorno?</label>
+  <select id="tipo_deficiencia" name="tipo_deficiencia" onchange="document.getElementById('deficiencia_outras_group').style.display = this.value === 'Outras' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Deficiência Física">Deficiência Física</option>
+    <option value="Deficiência Visual">Deficiência Visual</option>
+    <option value="Deficiência Intelectual">Deficiência Intelectual</option>
+    <option value="Deficiência Auditiva">Deficiência Auditiva</option>
+    <option value="Transtorno Mental">Transtorno Mental</option>
+    <option value="Transtorno de Comportamento">Transtorno de Comportamento</option>
+    <option value="Outras">Outras</option>
+  </select>
+</div>
+<div class="form-group" id="deficiencia_outras_group" style="display: none;">
+  <label for="deficiencia_outras">Se "Outras", especifique</label>
+  <input type="text" id="deficiencia_outras" name="deficiencia_outras">
+</div>
+
+<h2>Dados da Ocorrência</h2>
+<div class="form-group">
+  <label for="uf_ocorrencia">40. UF</label>
+  <select id="uf_ocorrencia" name="uf_ocorrencia" onchange="preencherMunicipioECodigo(this.value)">
+    <option value="">Selecione</option>
+    <option value="AC">AC - Acre</option>
+    <option value="AL">AL - Alagoas</option>
+    <option value="AP">AP - Amapá</option>
+    <option value="AM">AM - Amazonas</option>
+    <option value="BA">BA - Bahia</option>
+    <option value="CE">CE - Ceará</option>
+    <option value="DF">DF - Distrito Federal</option>
+    <option value="ES">ES - Espírito Santo</option>
+    <option value="GO">GO - Goiás</option>
+    <option value="MA">MA - Maranhão</option>
+    <option value="MT">MT - Mato Grosso</option>
+    <option value="MS">MS - Mato Grosso do Sul</option>
+    <option value="MG">MG - Minas Gerais</option>
+    <option value="PA">PA - Pará</option>
+    <option value="PB">PB - Paraíba</option>
+    <option value="PR">PR - Paraná</option>
+    <option value="PE">PE - Pernambuco</option>
+    <option value="PI">PI - Piauí</option>
+    <option value="RJ">RJ - Rio de Janeiro</option>
+    <option value="RN">RN - Rio Grande do Norte</option>
+    <option value="RS">RS - Rio Grande do Sul</option>
+    <option value="RO">RO - Rondônia</option>
+    <option value="RR">RR - Roraima</option>
+    <option value="SC">SC - Santa Catarina</option>
+    <option value="SP">SP - São Paulo</option>
+    <option value="SE">SE - Sergipe</option>
+    <option value="TO">TO - Tocantins</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="municipio_ocorrencia">41. Município de ocorrência</label>
+<select id="municipio_ocorrencia" name="municipio_ocorrencia">
+  <option value="">Selecione a UF primeiro</option>
+</select>
+</div>
+<div class="form-group">
+  <label for="cod_ibge_ocorrencia">Código (IBGE)</label>
+  <input type="text" id="cod_ibge_ocorrencia" name="cod_ibge_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="distrito_ocorrencia">42. Distrito</label>
+  <input type="text" id="distrito_ocorrencia" name="distrito_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="bairro_ocorrencia">43. Bairro</label>
+  <input type="text" id="bairro_ocorrencia" name="bairro_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="logradouro_ocorrencia">44. Logradouro (rua, avenida...)</label>
+  <input type="text" id="logradouro_ocorrencia" name="logradouro_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="cod_logradouro_ocorrencia">Código</label>
+  <input type="text" id="cod_logradouro_ocorrencia" name="cod_logradouro_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="numero_ocorrencia">45. Número</label>
+  <input type="text" id="numero_ocorrencia" name="numero_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="complemento_ocorrencia">46. Complemento</label>
+  <input type="text" id="complemento_ocorrencia" name="complemento_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="geo3">47. Geo campo 3</label>
+  <input type="text" id="geo3" name="geo3">
+</div>
+<div class="form-group">
+  <label for="geo4">48. Geo campo 4</label>
+  <input type="text" id="geo4" name="geo4">
+</div>
+<div class="form-group">
+  <label for="ponto_referencia_ocorrencia">49. Ponto de Referência</label>
+  <input type="text" id="ponto_referencia_ocorrencia" name="ponto_referencia_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="zona_ocorrencia">50. Zona</label>
+  <select id="zona_ocorrencia" name="zona_ocorrencia">
+    <option value="">Selecione</option>
+    <option value="1">1 - Urbana</option>
+    <option value="2">2 - Rural</option>
+    <option value="3">3 - Periurbana</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="hora_ocorrencia">51. Hora da ocorrência</label>
+  <input type="time" id="hora_ocorrencia" name="hora_ocorrencia">
+</div>
+<div class="form-group">
+  <label for="local_ocorrencia">52. Local de ocorrência</label>
+  <select id="local_ocorrencia" name="local_ocorrencia" onchange="document.getElementById('local_ocorrencia_outro_group').style.display = this.value === '09' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="01">01 - Residência</option>
+    <option value="02">02 - Habitação coletiva</option>
+    <option value="03">03 - Escola</option>
+    <option value="04">04 - Local de prática esportiva</option>
+    <option value="05">05 - Bar ou similar</option>
+    <option value="06">06 - Via pública</option>
+    <option value="07">07 - Comércio/serviços</option>
+    <option value="08">08 - Indústrias/construção</option>
+    <option value="09">09 - Outro</option>
+    <option value="99">99 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group" id="local_ocorrencia_outro_group" style="display: none;">
+  <label for="local_ocorrencia_outro">Se "Outro", especifique</label>
+  <input type="text" id="local_ocorrencia_outro" name="local_ocorrencia_outro">
+</div>
+</div>
+<div class="form-group">
+  <label for="ocorreu_outras_vezes">53. Ocorreu outras vezes?</label>
+  <select id="ocorreu_outras_vezes" name="ocorreu_outras_vezes">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="lesao_autoprovocada">54. A lesão foi autoprovocada?</label>
+  <select id="lesao_autoprovocada" name="lesao_autoprovocada">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+
+<h2>Violência</h2>
+<div class="form-group">
+  <label for="motivacao_violencia">55. Essa violência foi motivada por:</label>
+  <select id="motivacao_violencia" name="motivacao_violencia" onchange="document.getElementById('motivacao_outros_group').style.display = this.value === '09' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="01">01 - Sexismo</option>
+    <option value="02">02 - Homofobia/Lesbofobia/Bifobia/Transfobia</option>
+    <option value="03">03 - Racismo</option>
+    <option value="04">04 - Intolerância religiosa</option>
+    <option value="05">05 - Xenofobia</option>
+    <option value="06">06 - Conflito geracional</option>
+    <option value="07">07 - Situação de rua</option>
+    <option value="08">08 - Deficiência</option>
+    <option value="09">09 - Outros</option>
+    <option value="88">88 - Não se aplica</option>
+    <option value="99">99 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group" id="motivacao_outros_group" style="display: none;">
+  <label for="motivacao_violencia_outros">Se "Outros", especifique</label>
+  <input type="text" id="motivacao_violencia_outros" name="motivacao_violencia_outros">
+</div>
+
+<div class="form-group">
+  <label for="tipo_violencia">56. Tipo de violência</label>
+  <select id="tipo_violencia" name="tipo_violencia" onchange="document.getElementById('tipo_violencia_outros_group').style.display = this.value === 'Outras' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Física">Física</option>
+    <option value="Psicológica/Moral">Psicológica/Moral</option>
+    <option value="Tortura">Tortura</option>
+    <option value="Sexual">Sexual</option>
+    <option value="Tráfico de seres humanos">Tráfico de seres humanos</option>
+    <option value="Financeira/Econômica">Financeira/Econômica</option>
+    <option value="Negligência/Abandono">Negligência/Abandono</option>
+    <option value="Trabalho infantil">Trabalho infantil</option>
+    <option value="Intervenção legal">Intervenção legal</option>
+    <option value="Outras">Outras</option>
+  </select>
+</div>
+<div class="form-group" id="tipo_violencia_outros_group" style="display: none;">
+  <label for="descricao_tipo_violencia_outros">Se "Outras", especifique</label>
+  <input type="text" id="descricao_tipo_violencia_outros" name="descricao_tipo_violencia_outros">
+</div>
+</div>
+
+<div class="form-group">
+  <label for="meio_agressao">57. Meio de agressão</label>
+  <select id="meio_agressao" name="meio_agressao" onchange="document.getElementById('meio_agressao_outros_group').style.display = this.value === 'Outro' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Força corporal/espancamento">Força corporal/espancamento</option>
+    <option value="Enforcamento">Enforcamento</option>
+    <option value="Objeto contundente">Objeto contundente</option>
+    <option value="Objeto pérfuro-cortante">Objeto pérfuro-cortante</option>
+    <option value="Substância/Objeto quente">Substância/Objeto quente</option>
+    <option value="Envenenamento, Intoxicação">Envenenamento, Intoxicação</option>
+    <option value="Arma de fogo">Arma de fogo</option>
+    <option value="Ameaça">Ameaça</option>
+    <option value="Outro">Outro</option>
+  </select>
+</div>
+<div class="form-group" id="meio_agressao_outros_group" style="display: none;">
+  <label for="descricao_meio_agressao_outros">Se "Outro", especifique</label>
+  <input type="text" id="descricao_meio_agressao_outros" name="descricao_meio_agressao_outros">
+</div>
+</div>
+
+<h2>Violência Sexual</h2>
+<div class="form-group">
+  <label for="tipo_violencia_sexual">58. Se ocorreu violência sexual, qual o tipo?</label>
+  <select id="tipo_violencia_sexual" name="tipo_violencia_sexual" onchange="document.getElementById('tipo_violencia_sexual_outros_group').style.display = this.value === 'Outros' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Assédio sexual">Assédio sexual</option>
+    <option value="Estupro">Estupro</option>
+    <option value="Pornografia infantil">Pornografia infantil</option>
+    <option value="Exploração sexual">Exploração sexual</option>
+    <option value="Outros">Outros</option>
+  </select>
+</div>
+<div class="form-group" id="tipo_violencia_sexual_outros_group" style="display: none;">
+  <label for="descricao_violencia_sexual_outros">Se "Outros", especifique</label>
+  <input type="text" id="descricao_violencia_sexual_outros" name="descricao_violencia_sexual_outros">
+</div>
+
+<div class="form-group">
+  <label for="procedimento_realizado">59. Procedimento realizado</label>
+  <select id="procedimento_realizado" name="procedimento_realizado" onchange="document.getElementById('procedimento_outros_group').style.display = this.value === 'Outros' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Profilaxia DST">Profilaxia DST</option>
+    <option value="Profilaxia HIV">Profilaxia HIV</option>
+    <option value="Profilaxia Hepatite B">Profilaxia Hepatite B</option>
+    <option value="Coleta de sêmen">Coleta de sêmen</option>
+    <option value="Coleta de sangue">Coleta de sangue</option>
+    <option value="Coleta de secreção vaginal">Coleta de secreção vaginal</option>
+    <option value="Contracepção de emergência">Contracepção de emergência</option>
+    <option value="Aborto previsto em lei">Aborto previsto em lei</option>
+    <option value="Outros">Outros</option>
+  </select>
+</div>
+<div class="form-group" id="procedimento_outros_group" style="display: none;">
+  <label for="descricao_procedimento_outros">Se "Outros", especifique</label>
+  <input type="text" id="descricao_procedimento_outros" name="descricao_procedimento_outros">
+</div>
+</div>
+
+<h2>Dados do provável autor da agressão</h2>
+<div class="form-group">
+  <label for="numero_envolvidos">60. Número de envolvidos</label>
+  <select id="numero_envolvidos" name="numero_envolvidos">
+    <option value="">Selecione</option>
+    <option value="1">1 - Um</option>
+    <option value="2">2 - Dois ou mais</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="vinculo_autor">61. Vínculo/grau de parentesco com a pessoa atendida</label>
+  <select id="vinculo_autor" name="vinculo_autor" onchange="document.getElementById('vinculo_outros_group').style.display = this.value === 'Outros' ? 'block' : 'none'">
+    <option value="">Selecione</option>
+    <option value="Pai">Pai</option>
+    <option value="Mãe">Mãe</option>
+    <option value="Padrasto">Padrasto</option>
+    <option value="Madrasta">Madrasta</option>
+    <option value="Cônjuge">Cônjuge</option>
+    <option value="Ex-Cônjuge">Ex-Cônjuge</option>
+    <option value="Namorado(a)">Namorado(a)</option>
+    <option value="Ex-Namorado(a)">Ex-Namorado(a)</option>
+    <option value="Filho(a)">Filho(a)</option>
+    <option value="Irmão(ã)">Irmão(ã)</option>
+    <option value="Amigos/conhecidos">Amigos/conhecidos</option>
+    <option value="Desconhecido(a)">Desconhecido(a)</option>
+    <option value="Cuidador(a)">Cuidador(a)</option>
+    <option value="Patrão/chefe">Patrão/chefe</option>
+    <option value="Pessoa com relação institucional">Pessoa com relação institucional</option>
+    <option value="Policial/agente da lei">Policial/agente da lei</option>
+    <option value="Própria pessoa">Própria pessoa</option>
+    <option value="Outros">Outros</option>
+  </select>
+</div>
+<div class="form-group" id="vinculo_outros_group" style="display: none;">
+  <label for="descricao_vinculo_outros">Se "Outros", especifique</label>
+  <input type="text" id="descricao_vinculo_outros" name="descricao_vinculo_outros">
+</div>
+</div>
+<div class="form-group">
+  <label for="sexo_autor">62. Sexo do provável autor da agressão</label>
+  <select id="sexo_autor" name="sexo_autor">
+    <option value="">Selecione</option>
+    <option value="1">1 - Masculino</option>
+    <option value="2">2 - Feminino</option>
+    <option value="3">3 - Ambos os sexos</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="uso_alcool">63. Suspeita de uso de álcool</label>
+  <select id="uso_alcool" name="uso_alcool">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="ciclo_vida_autor">64. Ciclo de vida do provável autor da violência</label>
+  <select id="ciclo_vida_autor" name="ciclo_vida_autor">
+    <option value="">Selecione</option>
+    <option value="1">1 - Criança (0 a 9 anos)</option>
+    <option value="2">2 - Adolescente (10 a 19 anos)</option>
+    <option value="3">3 - Jovem (20 a 24 anos)</option>
+    <option value="4">4 - Pessoa adulta (25 a 59 anos)</option>
+    <option value="5">5 - Pessoa idosa (60 anos ou mais)</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+
+<h2>Encaminhamento</h2>
+<div class="form-group">
+  <label for="encaminhamento_realizado">65. Encaminhamento</label>
+  <select id="encaminhamento_realizado" name="encaminhamento_realizado">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label>Se sim, marcar as instituições/órgãos:</label>
+  <div>
+    <label><input type="checkbox" name="encaminhamento" value="Rede da Saúde"> Rede da Saúde</label>
+    <label><input type="checkbox" name="encaminhamento" value="Rede da Assistência Social"> Rede da Assistência Social</label>
+    <label><input type="checkbox" name="encaminhamento" value="Rede da Educação"> Rede da Educação</label>
+    <label><input type="checkbox" name="encaminhamento" value="Rede de Atendimento à Mulher"> Rede de Atendimento à Mulher</label>
+    <label><input type="checkbox" name="encaminhamento" value="Conselho Tutelar"> Conselho Tutelar</label>
+    <label><input type="checkbox" name="encaminhamento" value="Conselho do Idoso"> Conselho do Idoso</label>
+    <label><input type="checkbox" name="encaminhamento" value="Delegacia de Atendimento ao Idoso"> Delegacia de Atendimento ao Idoso</label>
+    <label><input type="checkbox" name="encaminhamento" value="Centro de Referência dos Direitos Humanos"> Centro de Referência dos Direitos Humanos</label>
+    <label><input type="checkbox" name="encaminhamento" value="Ministério Público"> Ministério Público</label>
+    <label><input type="checkbox" name="encaminhamento" value="Delegacia Especializada de Proteção à Criança e Adolescente"> Delegacia Especializada de Proteção à Criança e Adolescente</label>
+    <label><input type="checkbox" name="encaminhamento" value="Delegacia de Atendimento à Mulher"> Delegacia de Atendimento à Mulher</label>
+    <label><input type="checkbox" name="encaminhamento" value="Outras delegacias"> Outras delegacias</label>
+    <label><input type="checkbox" name="encaminhamento" value="Justiça da Infância e da Juventude"> Justiça da Infância e da Juventude</label>
+    <label><input type="checkbox" name="encaminhamento" value="Defensoria Pública"> Defensoria Pública</label>
+  </div>
+</div>
+
+<h2>Dados Finais</h2>
+<div class="form-group">
+  <label for="violencia_trabalho">66. Violência Relacionada ao Trabalho</label>
+  <select id="violencia_trabalho" name="violencia_trabalho">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="cat_emitida">67. Se sim, foi emitida a Comunicação de Acidente do Trabalho (CAT)?</label>
+  <select id="cat_emitida" name="cat_emitida">
+    <option value="">Selecione</option>
+    <option value="1">1 - Sim</option>
+    <option value="2">2 - Não</option>
+    <option value="8">8 - Não se aplica</option>
+    <option value="9">9 - Ignorado</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="circunstancia_lesao">68. Circunstância da lesão (CID 10 - Cap XX)</label>
+  <input type="text" id="circunstancia_lesao" name="circunstancia_lesao">
+</div>
+<div class="form-group">
+  <label for="data_encerramento">69. Data de encerramento</label>
+  <input type="date" id="data_encerramento" name="data_encerramento">
+</div>
+
+<h2>Informações complementares e observações</h2>
+<div class="form-group">
+  <label for="nome_acompanhante">Nome do acompanhante</label>
+  <input type="text" id="nome_acompanhante" name="nome_acompanhante" >
+</div>
+<div class="form-group">
+  <label for="vinculo_acompanhante">Vínculo/grau de parentesco</label>
+  <input type="text" id="vinculo_acompanhante" name="vinculo_acompanhante">
+</div>
+<div class="form-group">
+  <label for="telefone_acompanhante">(DDD) Telefone</label>
+  <input type="text" id="telefone_acompanhante" name="telefone_acompanhante">
+</div>
+<div class="form-group">
+  <label for="observacoes_adicionais">Observações Adicionais</label>
+  <textarea id="observacoes_adicionais" name="observacoes_adicionais" rows="4"></textarea>
+</div>
+
+<h2>Notificador</h2>
+<div class="form-group">
+  <label for="municipio_unidade">Município/Unidade de Saúde</label>
+  <input type="text" id="municipio_unidade" name="municipio_unidade">
+</div>
+<div class="form-group">
+  <label for="codigo_unidade_saude">Cód. da Unid. de Saúde / CNES</label>
+  <input type="text" id="codigo_unidade_saude" name="codigo_unidade_saude">
+</div>
+<div class="form-group">
+  <label for="nome_notificador">Nome</label>
+  <input type="text" id="nome_notificador" name="nome_notificador">
+</div>
+<div class="form-group">
+  <label for="funcao_notificador">Função</label>
+  <input type="text" id="funcao_notificador" name="funcao_notificador">
+</div>
+
+
+
+<div class="form-group" style="text-align: center; margin-top: 40px;">
+  <button onclick="window.print()" style="padding: 10px 20px; font-size: 16px; margin-right: 10px;">Imprimir</button>
+  <button onclick="downloadPDF()" style="padding: 10px 20px; font-size: 16px; margin-right: 10px;">Salvar</button>
+  <button onclick="enviarParaIfe(event)" style="padding: 10px 20px; font-size: 16px;">Enviar para Ife</button>
+</div>
+
+<script>
+function downloadPDF() {
+  window.jsPDF = window.jspdf.jsPDF;
+  const doc = new jsPDF('p', 'pt', 'a4');
+  doc.html(document.body, {
+    callback: function (doc) {
+      doc.save('ficha-de-violencia.pdf');
+    },
+    x: 10,
+    y: 10
+  });
+}
+</script>
+<script>
+fetch('https://restcountries.com/v3.1/all')
+  .then(response => response.json())
+  .then(data => {
+    const select = document.getElementById('pais_estrangeiro');
+    select.innerHTML = '<option value="">Selecione</option>';
+    data.sort((a, b) => a.name.common.localeCompare(b.name.common));
+    data.forEach(country => {
+      const option = document.createElement('option');
+      option.value = country.name.common;
+      option.textContent = country.name.common;
+      select.appendChild(option);
+    });
+  })
+  .catch(() => {
+    const select = document.getElementById('pais_estrangeiro');
+    select.innerHTML = '<option value="">Erro ao carregar países</option>';
+  });
+</script>
+<script>
+document.getElementById('uf').addEventListener('change', function () {
+  const uf = this.value;
+  const municipioSelect = document.getElementById('municipio_notificacao');
+
+  if (!uf) {
+    municipioSelect.innerHTML = '<option value="">Selecione a UF primeiro</option>';
+    return;
+  }
+
+  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+    .then(response => response.json())
+    .then(data => {
+      municipioSelect.innerHTML = '<option value="">Selecione</option>';
+      data.forEach(municipio => {
+        const option = document.createElement('option');
+        option.value = municipio.nome;
+        option.textContent = municipio.nome;
+        municipioSelect.appendChild(option);
+      });
+    })
+    .catch(() => {
+      municipioSelect.innerHTML = '<option value="">Erro ao carregar municípios</option>';
+    });
+});
+</script>
+<script>
+document.getElementById('uf_residencia').addEventListener('change', function () {
+  const uf = this.value;
+  const municipioSelect = document.getElementById('municipio_residencia');
+
+  if (!uf) {
+    municipioSelect.innerHTML = '<option value="">Selecione a UF primeiro</option>';
+    return;
+  }
+
+  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+    .then(response => response.json())
+    .then(data => {
+      municipioSelect.innerHTML = '<option value="">Selecione</option>';
+      data.forEach(municipio => {
+        const option = document.createElement('option');
+        option.value = municipio.nome;
+        option.textContent = municipio.nome;
+        municipioSelect.appendChild(option);
+      });
+    })
+    .catch(() => {
+      municipioSelect.innerHTML = '<option value="">Erro ao carregar municípios</option>';
+    });
+});
+</script>
+<script>
+document.getElementById('uf_ocorrencia').addEventListener('change', function () {
+  const uf = this.value;
+  const municipioSelect = document.getElementById('municipio_ocorrencia');
+
+  if (!uf) {
+    municipioSelect.innerHTML = '<option value="">Selecione a UF primeiro</option>';
+    return;
+  }
+
+  fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`)
+    .then(response => response.json())
+    .then(data => {
+      municipioSelect.innerHTML = '<option value="">Selecione</option>';
+      data.forEach(municipio => {
+        const option = document.createElement('option');
+        option.value = municipio.nome;
+        option.textContent = municipio.nome;
+        municipioSelect.appendChild(option);
+      });
+    })
+    .catch(() => {
+      municipioSelect.innerHTML = '<option value="">Erro ao carregar municípios</option>';
+    });
+});
+</script>
+<script>
+function enviarParaIfe(event) {
+  event.preventDefault();
+  const form = document.forms[0];
+  Hyperflow.initFlow("XtxJYESAU", {
+    "name": form.nome_vitima.value,
+    "sexo": form.sexo_vitima.value,
+    "idade": form.idade.value,
+    "data_atendimento": form.data_notificacao.value,
+    "unidade": form.nome_unidade.value,
+    "tipo_violencia": form.tipo_violencia.value,
+    "relacao_agressor": form.vinculo_autor.value,
+    "encaminhamentos": Array.from(form.querySelectorAll('input[name=encaminhamento]:checked')).map(e => e.value).join(', '),
+    "assinatura": form.nome_notificador.value
